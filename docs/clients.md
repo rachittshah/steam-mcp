@@ -8,6 +8,10 @@ you installed it into an environment.
 Set `STEAM_API_KEY` in the server's environment for player/profile tools. Get a
 free key at <https://steamcommunity.com/dev/apikey>. Store tools work without one.
 
+> **Until a PyPI release**, replace `uvx steam-mcp` everywhere below with
+> `uvx --from git+https://github.com/rachittshah/steam-mcp steam-mcp` (in JSON:
+> `"command": "uvx"`, `"args": ["--from", "git+https://github.com/rachittshah/steam-mcp", "steam-mcp"]`).
+
 ---
 
 ## Claude Desktop
