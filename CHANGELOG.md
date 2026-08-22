@@ -13,7 +13,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     `get_steam_level`, `get_friend_list`.
   - Library: `get_owned_games`, `get_recently_played_games`.
   - Achievements & stats: `get_player_achievements`,
-    `get_global_achievement_percentages`, `get_game_schema`.
+    `get_global_achievement_percentages`, `get_game_schema`,
+    `get_current_player_count` (live concurrent players).
   - Store: `search_store`, `get_app_details`, `get_app_reviews`.
   - News: `get_news_for_app`.
 - Flexible SteamID handling (SteamID64/2/3, profile URLs, vanity names).

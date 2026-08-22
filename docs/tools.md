@@ -2,7 +2,7 @@
 
 _Generated from steam-mcp v0.1.0 — do not edit by hand; run `python scripts/gen_tool_docs.py`._
 
-14 tools are available. Tools marked _(key)_ require `STEAM_API_KEY`; the rest work without one.
+15 tools are available. Tools marked _(key)_ require `STEAM_API_KEY`; the rest work without one.
 
 ## `get_app_details`
 
@@ -29,6 +29,18 @@ reviewer's playtime. No API key required.
 | `appid` | integer | yes |  | The Steam application id (appid), e.g. 440 for Team Fortress 2. Use search_store to find an appid from a game name. |
 | `review_type` | string | no | `all` | Filter: 'all', 'positive', or 'negative'. |
 | `limit` | integer | no | `8` | Number of recent reviews to show. |
+
+## `get_current_player_count`
+
+Get the number of players currently in a game, right now.
+
+Returns the live concurrent player count for an app. Great for
+"how many people are playing X right now?". No API key required. Use
+search_store to find the appid from a game name.
+
+| Parameter | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `appid` | integer | yes |  | The Steam application id (appid), e.g. 440 for Team Fortress 2. Use search_store to find an appid from a game name. |
 
 ## `get_friend_list` _(key)_
 

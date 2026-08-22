@@ -68,7 +68,7 @@ The full, generated tool reference lives in [`docs/tools.md`](./docs/tools.md). 
 
 - **Identity** — `resolve_vanity_url`, `get_player_summary`, `get_player_bans`, `get_steam_level`
 - **Library** — `get_owned_games`, `get_recently_played_games`, `get_friend_list`
-- **Achievements & stats** — `get_player_achievements`, `get_game_schema`, `get_global_achievement_percentages`
+- **Achievements & stats** — `get_player_achievements`, `get_game_schema`, `get_global_achievement_percentages`, `get_current_player_count`
 - **Store** — `get_app_details`, `get_app_reviews`, `search_store`
 - **News** — `get_news_for_app`
 
