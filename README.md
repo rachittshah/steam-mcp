@@ -76,6 +76,17 @@ The full, generated tool reference lives in [`docs/tools.md`](./docs/tools.md). 
 - **Store** — `get_app_details`, `get_app_reviews`, `search_store`
 - **News** — `get_news_for_app`
 
+## Example prompts
+
+Once connected, try asking your assistant:
+
+- *"How many people are playing Counter-Strike 2 right now?"* → `search_store` → `get_current_player_count`
+- *"What's the rarest achievement in Team Fortress 2?"* → `get_global_achievement_percentages`
+- *"Summarize the recent reviews for Elden Ring."* → `search_store` → `get_app_reviews`
+- *"Whose profile is steamcommunity.com/id/gabelogannewell, and what are they playing?"* → `get_player_summary`
+- *"What are my 5 most-played games?"* (needs your SteamID) → `get_owned_games`
+- *"Any recent patch notes for Dota 2?"* → `get_news_for_app`
+
 ## Development
 
 ```bash
