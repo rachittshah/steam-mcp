@@ -153,3 +153,11 @@ async def test_search_store(client):
     )
     items = await client.search_store("portal")
     assert items[0]["id"] == 620
+
+
+@respx.mock
+async def test_current_player_count(client):
+    respx.get(url__regex=r".*GetNumberOfCurrentPlayers.*").mock(
+        return_value=httpx.Response(200, json={"response": {"player_count": 12345, "result": 1}})
+    )
+    assert await client.get_current_player_count(730) == 12345

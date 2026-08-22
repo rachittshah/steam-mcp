@@ -90,6 +90,21 @@ def register(mcp: MCPServer) -> None:
 
     @mcp.tool(annotations=READONLY)
     @tool_errors
+    async def get_current_player_count(appid: AppIdArg) -> str:
+        """Get the number of players currently in a game, right now.
+
+        Returns the live concurrent player count for an app. Great for
+        "how many people are playing X right now?". No API key required. Use
+        search_store to find the appid from a game name.
+        """
+        client = get_client()
+        count = await client.get_current_player_count(appid)
+        if count is None:
+            return f"No live player count available for appid {appid}."
+        return f"appid {appid} currently has **{count:,}** players in-game."
+
+    @mcp.tool(annotations=READONLY)
+    @tool_errors
     async def get_game_schema(appid: AppIdArg) -> str:
         """Get a game's achievement and stat definitions (its schema).
 

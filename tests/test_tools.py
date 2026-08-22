@@ -118,3 +118,13 @@ async def test_invalid_steamid_returns_actionable_message(server):
         assert "Invalid SteamID" in out or "SteamID" in out
     finally:
         set_client(None)
+
+
+@respx.mock
+async def test_current_player_count_tool(server, use_mock_client):
+    respx.get(url__regex=r".*GetNumberOfCurrentPlayers.*").mock(
+        return_value=httpx.Response(200, json={"response": {"player_count": 1000000, "result": 1}})
+    )
+    result = await server.call_tool("get_current_player_count", {"appid": 730})
+    out = text_of(result)
+    assert "1,000,000" in out

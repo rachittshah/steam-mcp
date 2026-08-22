@@ -222,6 +222,17 @@ class SteamClient:
         )
         return list(resp.get("achievementpercentages", {}).get("achievements", []))
 
+    async def get_current_player_count(self, appid: int) -> int | None:
+        resp = await self._api(
+            "ISteamUserStats",
+            "GetNumberOfCurrentPlayers",
+            1,
+            {"appid": appid},
+            key_required=False,
+        )
+        count = resp.get("player_count")
+        return int(count) if count is not None else None
+
     # ---- ISteamNews ----------------------------------------------------
 
     async def get_news_for_app(
