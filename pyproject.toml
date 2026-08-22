@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "steam-mcp"
+version = "0.1.0"
+description = "An MCP server that exposes the Steam Web API to any AI harness (Claude, Cursor, Cline, ...)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Rachitt Shah" }]
+keywords = ["steam", "mcp", "model-context-protocol", "llm", "gaming", "steam-api"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Games/Entertainment",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "mcp>=1.2.0",
+    "httpx>=0.27",
+    "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+    "ruff>=0.6",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+steam-mcp = "steam_mcp.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/rachittshah/steam-mcp"
+Repository = "https://github.com/rachittshah/steam-mcp"
+Issues = "https://github.com/rachittshah/steam-mcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/steam_mcp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4", "RUF"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["mcp.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-ra -q"
