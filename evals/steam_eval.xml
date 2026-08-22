@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Evaluation set for steam-mcp.
+
+  Each question is answerable by an agent using only the read-only tools in this
+  server, has a single verifiable answer, and is stable over time (permanent
+  appids, fixed Metacritic scores and release dates, and a well-known account's
+  immutable SteamID). Store/stats questions need no API key; the two vanity
+  questions require STEAM_API_KEY.
+-->
+<evaluation>
+  <qa_pair>
+    <question>Resolve the Steam custom URL name "gabelogannewell" to its 17-digit SteamID64.</question>
+    <answer>76561197960287930</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Resolve the Steam custom URL name "gabelogannewell" and report the account's SteamID3, in the [U:1:W] form.</question>
+    <answer>[U:1:22202]</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using Steam store search, what is the numeric appid for "Half-Life 2"?</question>
+    <answer>220</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using Steam store search, what is the numeric appid for "Counter-Strike 2"?</question>
+    <answer>730</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using Steam store search, what is the numeric appid for "Team Fortress 2"?</question>
+    <answer>440</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Find "Portal 2" via store search, then look up its store details. What Metacritic score is listed?</question>
+    <answer>95</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Look up the store details for appid 620. In what four-digit year was it released?</question>
+    <answer>2011</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Look up the store details for appid 220 (Half-Life 2). What Metacritic score is listed?</question>
+    <answer>96</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Look up the store details for appid 400 (Portal). Who is listed as the developer?</question>
+    <answer>Valve</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using Steam store search, what is the numeric appid for "Elden Ring"?</question>
+    <answer>1245620</answer>
+  </qa_pair>
+</evaluation>
