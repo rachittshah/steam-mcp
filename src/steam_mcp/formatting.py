@@ -24,7 +24,11 @@ def truncate(text: str, limit: int = CHARACTER_LIMIT) -> str:
         "\n\n[... response truncated to fit the context budget. Narrow your query "
         "(e.g. a specific appid, or format='concise') for complete results.]"
     )
-    keep = max(0, limit - len(notice))
+    # For a pathologically small budget that can't even hold the notice, hard
+    # cut so the guarantee len(result) <= limit still holds.
+    if limit <= len(notice):
+        return text[:limit]
+    keep = limit - len(notice)
     return text[:keep].rstrip() + notice
 
 

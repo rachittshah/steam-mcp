@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Annotated
+import html
+from typing import TYPE_CHECKING, Annotated, Any
 
 from pydantic import Field
 
@@ -16,11 +17,11 @@ if TYPE_CHECKING:
     from mcp.server import MCPServer
 
 
-def _join(items: list[dict], key: str = "description") -> str:
+def _join(items: list[dict[str, Any]], key: str = "description") -> str:
     return ", ".join(i.get(key, "") for i in items) if items else "—"
 
 
-def _search_price(item: dict) -> str:
+def _search_price(item: dict[str, Any]) -> str:
     """Format a storesearch result's price (given in minor currency units)."""
     final = item.get("price", {}).get("final")
     if not final:
@@ -93,7 +94,7 @@ def register(mcp: MCPServer) -> None:
         if d.get("recommendations"):
             lines.append(bullet("Recommendations", f"{d['recommendations'].get('total', 0):,}"))
         if d.get("short_description"):
-            lines += ["", d["short_description"]]
+            lines += ["", html.unescape(d["short_description"])]
         return truncate("\n".join(lines))
 
     @mcp.tool(annotations=READONLY)
@@ -134,7 +135,7 @@ def register(mcp: MCPServer) -> None:
             for r in reviews:
                 vote = "👍" if r.get("voted_up") else "👎"
                 hours = format_playtime(r.get("author", {}).get("playtime_forever"))
-                text = " ".join((r.get("review") or "").split())
+                text = html.unescape(" ".join((r.get("review") or "").split()))
                 if len(text) > 240:
                     text = text[:240].rstrip() + "…"
                 lines.append(f"- {vote} ({hours}) {text}")
