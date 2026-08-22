@@ -23,3 +23,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Test suite (respx-mocked) and CI on Python 3.10–3.12.
 - Generated tool reference (`docs/tools.md`) and per-client setup guide
   (`docs/clients.md`).
+
+### Changed
+- Require `mcp>=2.0.0` (uses the 2.0 `MCPServer` API), and bump minimum
+  versions of httpx, pydantic, and dev tooling to current releases.
