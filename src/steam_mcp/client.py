@@ -90,12 +90,23 @@ class SteamClient:
         return data
 
     async def _api(
-        self, interface: str, method: str, version: int, params: dict[str, Any]
+        self,
+        interface: str,
+        method: str,
+        version: int,
+        params: dict[str, Any],
+        *,
+        key_required: bool = True,
     ) -> dict[str, Any]:
         url = f"{STEAM_API_BASE}/{interface}/{method}/v{version}/"
-        params = {"key": self._require_key(), **params}
+        if key_required:
+            params = {"key": self._require_key(), **params}
+        elif self._settings.api_key:
+            # Public endpoint, but a key (if present) is harmless and accepted.
+            params = {"key": self._settings.api_key, **params}
         data = await self._get_json(url, params)
-        return data.get("response", data)
+        result = data.get("response", data)
+        return result if isinstance(result, dict) else {}
 
     async def _store(self, path: str, params: dict[str, Any]) -> dict[str, Any]:
         return await self._get_json(f"{STEAM_STORE_BASE}/{path}", params)
@@ -207,6 +218,7 @@ class SteamClient:
             "GetGlobalAchievementPercentagesForApp",
             2,
             {"gameid": appid},
+            key_required=False,
         )
         return list(resp.get("achievementpercentages", {}).get("achievements", []))
 
@@ -220,6 +232,7 @@ class SteamClient:
             "GetNewsForApp",
             2,
             {"appid": appid, "count": count, "maxlength": maxlength},
+            key_required=False,
         )
         return list(resp.get("appnews", {}).get("newsitems", []))
 
